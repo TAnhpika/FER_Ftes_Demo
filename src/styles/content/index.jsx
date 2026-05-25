@@ -2,7 +2,7 @@ import React from "react";
 import "./landing.css";
 
 // Hero section background image URL (replace with your product image)
-const HERO_BG = "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80";
+const HERO_BG = "https://wallpapercat.com/w/full/f/9/6/1302353-3840x2160-desktop-4k-anime-background-image.jpg";
 
 const LandingPage = () => {
   return (
