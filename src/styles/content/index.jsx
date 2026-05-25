@@ -1,40 +1,99 @@
-import { fetchApiProduct } from "../../service/product";
-import commonStyles from "../common";
-import { useEffect, useState } from "react";
+import React from "react";
+import "./landing.css";
 
-const Content = () => {
-    const [products, setProducts] = useState([]);
-    const [page, setPage] = useState(1);
+// Hero section background image URL (replace with your product image)
+const HERO_BG = "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80";
 
-    const fetchData = async () => {
-        const res = await fetchApiProduct(page);
-        setProducts(res.products)
-    }
-    useEffect(() => {
-        fetchData(page);
-    }, [page]);
-
-    return (
-        <div
-            // @ts-ignore
-            style={commonStyles}
-        >
-            <div>
-                {products?.map((product) => (
-                    <div key={product.id}>
-                        <img src={product.thumbnail} alt={product.title} />
-                        <div>{product.title}</div>
-                        <p>{product.description}</p>
-                        <p>{product.price}</p>
-                    </div>
-                ))}
-            </div>
-            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                Trang trước
-            </button>
-            <button onClick={() => setPage(page + 1)}>Trang sau</button>
+const LandingPage = () => {
+  return (
+    <div className="landing-page">
+      {/* Hero Section */}
+      <section className="hero" style={{ backgroundImage: `url(${HERO_BG})` }}>
+        <div className="overlay" />
+        <div className="hero-content">
+          <h1 className="hero-title">Transform Your Business with <span className="highlight">Super SaaS</span></h1>
+          <p className="hero-subtitle">All‑in‑one platform to manage, automate, and grow your online presence.</p>
+          <a href="#pricing" className="cta-button">Get Started Free</a>
         </div>
-    );
+      </section>
+
+      {/* Features Section */}
+      <section className="features">
+        <h2 className="section-title">Why Choose Us</h2>
+        <div className="feature-grid">
+          <div className="feature-card">
+            <div className="icon">⚡</div>
+            <h3>Lightning‑fast Performance</h3>
+            <p>Our infrastructure guarantees sub‑second response times worldwide.</p>
+          </div>
+          <div className="feature-card">
+            <div className="icon">🔒</div>
+            <h3>Enterprise‑grade Security</h3>
+            <p>End‑to‑end encryption, SOC‑2 compliance, and regular audits.</p>
+          </div>
+          <div className="feature-card">
+            <div className="icon">💡</div>
+            <h3>Intuitive UI/UX</h3>
+            <p>Designed by award‑winning designers for effortless workflows.</p>
+          </div>
+          <div className="feature-card">
+            <div className="icon">🚀</div>
+            <h3>Scalable Architecture</h3>
+            <p>Grow from 10 to 10 000+ users without a hitch.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="pricing">
+        <h2 className="section-title">Simple, Transparent Pricing</h2>
+        <div className="pricing-grid">
+          <div className="pricing-card featured">
+            <h3>Starter</h3>
+            <p className="price">$19<span className="period">/mo</span></p>
+            <ul className="features-list">
+              <li>Up to 5 k active users</li>
+              <li>Basic analytics</li>
+              <li>Email support</li>
+            </ul>
+            <a href="#" className="cta-button">Choose Starter</a>
+          </div>
+          <div className="pricing-card featured highlighted">
+            <h3>Growth</h3>
+            <p className="price">$49<span className="period">/mo</span></p>
+            <ul className="features-list">
+              <li>Unlimited users</li>
+              <li>Advanced analytics</li>
+              <li>Priority support</li>
+              <li>Custom integrations</li>
+            </ul>
+            <a href="#" className="cta-button primary">Best Value</a>
+          </div>
+          <div className="pricing-card featured">
+            <h3>Enterprise</h3>
+            <p className="price">Contact Us</p>
+            <ul className="features-list">
+              <li>Dedicated account manager</li>
+              <li>SLAs & 99.99% uptime</li>
+              <li>On‑premise deployment</li>
+            </ul>
+            <a href="#" className="cta-button">Contact Sales</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-links">
+          <a href="#">About</a>
+          <a href="#">Docs</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </div>
+        <p>© {new Date().getFullYear()} Super SaaS. All rights reserved.</p>
+      </footer>
+    </div>
+  );
 };
 
-export default Content;
+export default LandingPage;
